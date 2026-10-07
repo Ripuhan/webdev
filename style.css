@@ -1,13 +1,27 @@
-/* styles.css */
+
 body {
   font-family: Arial, sans-serif;
-  background-color: #f0f0f0;
+  background-color: lightgray;
 }
 
 h1 {
-  color: #08ac52;
+  color: #7b2727;
 }
 
 p {
-    color:#4a08ac;
+    color:#996432;
+}
+legend {
+    color: #4d6f32;
+    font-weight: bold;
+}
+fieldset {
+    border: 2px solid #f9fafa;
+    padding: 12px;
+    margin-bottom: 20px;
+}
+label {
+     color: #7145af;
+    margin-bottom: 8px;
+    font-weight: bold;
 }
