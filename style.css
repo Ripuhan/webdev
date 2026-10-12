@@ -1,31 +1,8 @@
-
-body {
-  font-family: Arial, sans-serif;
-  background-color: rgb(250, 249, 249);
-}
-
 h1 {
-  color: #7b2727;
+  text-decoration: underline;
+  text-align: justify;
+  vertical-align: bottom;
+  text-transform: uppercase;
+  line-height: 150%;
 }
 
-p {
-    border: 15px ridge rgb(150, 29, 29);
-    height: 40px;
-    padding: 0px;
-    margin: 10px auto;
-    color:#000000;
-}
-legend {
-    color: #4d6f32;
-    font-weight: bold;
-}
-fieldset {
-    border: 2px solid #f9fafa;
-    padding: 12px;
-    margin-bottom: 20px;
-}
-label {
-     color: #7145af;
-    margin-bottom: 8px;
-    font-weight: bold;
-}
