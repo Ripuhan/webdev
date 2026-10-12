@@ -8,7 +8,26 @@
      <style>.underline-text    { text-decoration: underline; }
 .overline-text     { text-decoration: overline; }
 .line-through-text { text-decoration: line-through; }
-.no-decoration     { text-decoration: none; }</style>
+.no-decoration     { text-decoration: none; }
+.container {
+  width: 300px;
+  border: 1px solid #ccc;
+  padding: 10px;
+}
+
+.center-text {
+  text-align: center;
+}
+.containers {
+  height: 100px;
+  line-height: 100px;
+  border: 1px solid #ccc;
+}
+
+.middle-text {
+  vertical-align: middle;
+}
+</style>
 </head>
 <body>
     <h1>hello this is a css </h1>
@@ -16,5 +35,13 @@
     <p class="overline-text">This text has an overline.</p>
    <p class="line-through-text">This text has a line through it.</p>
    <p class="no-decoration">This text has no decoration.</p>
+   <div class="container">
+  <p>This is a paragraph of text with left alignment.</p>
+  <p class="center-text">This paragraph has center alignment.</p>
+  <p>This is another paragraph of text with left alignment.</p>
+  <div class="containers">
+  <span class="middle-text">This text is vertically aligned in the middle.</span>
+</div>
+</div>
 </body>
 </html>
