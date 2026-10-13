@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Download Presentation</title>
+    <!-- Include PptxGenJS Library -->
+    <script src="https://cdn.jsdelivr.net/gh/gitbrent/pptxgenjs@3.12.0/dist/pptxgen.bundle.js"></script>
+    <style>
+        body {
+            background-color: #020617;
+            color: #f8fafc;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            text-align: center;
+        }
+        .container {
+            background-color: #0f172a;
+            padding: 40px 60px;
+            border-radius: 16px;
+            border: 1px solid #334155;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+            max-width: 600px;
+        }
+        h1 {
+            color: #10b981;
+            margin-top: 0;
+        }
+        p {
+            color: #cbd5e1;
+            font-size: 1.1rem;
+            line-height: 1.5;
+            margin-bottom: 30px;
+        }
+        button {
+            background: linear-gradient(135deg, #10b981, #0ea5e9);
+            color: white;
+            border: none;
+            padding: 16px 32px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(16, 185, 129, 0.3);
+        }
+        button:active {
+            transform: translateY(0);
+        }
+        #status {
+            margin-top: 20px;
+            font-size: 0.9rem;
+            color: #94a3b8;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Presentation Ready</h1>
+        <p>The <strong>Unified Rural Agri-Health Platform</strong> presentation has been compiled. Click the button below to generate and download your Microsoft PowerPoint (.pptx) file.</p>
+        <button id="downloadBtn" onclick="generatePPT()">Download .pptx File</button>
+        <div id="status"></div>
+    </div>
+
+    <script>
+        function generatePPT() {
+            const btn = document.getElementById('downloadBtn');
+            const status = document.getElementById('status');
+            
+            btn.innerText = "Generating...";
+            btn.disabled = true;
+            status.innerText = "Building slides, please wait...";
+
+            try {
+                // Initialize new presentation
+                let pptx = new PptxGenJS();
+                pptx.layout = 'LAYOUT_16x9';
+
+                // Helper functions for consistent styling
+                const bgColor = '0F172A';
+                const titleColor = 'F8FAFC';
+                const textColor = 'CBD5E1';
+                const accentAgri = '10B981';
+                const accentHealth = '0EA5E9';
+
+                function addSectionSlide(title, subtitle) {
+                    let slide = pptx.addSlide();
+                    slide.background = { color: bgColor };
+                    slide.addText(title, { x: 1, y: 2.5, w: 8, fontSize: 44, bold: true, color: titleColor, align: 'center' });
+                    if(subtitle) slide.addText(subtitle, { x: 1, y: 3.5, w: 8, fontSize: 20, color: textColor, align: 'center' });
+                }
+
+                function addContentSlide(title, bulletPoints) {
+                    let slide = pptx.addSlide();
+                    slide.background = { color: bgColor };
+                    slide.addText(title, { x: 0.5, y: 0.5, w: 9, fontSize: 32, bold: true, color: titleColor });
+                    slide.addText(bulletPoints, { x: 0.5, y: 1.5, w: 9, h: 5, fontSize: 18, color: textColor, bullet: { type: 'bullet' }, valign: 'top', lineSpacing: 30 });
+                }
+
+                // Slide 1: Title
+                let slide1 = pptx.addSlide();
+                slide1.background = { color: bgColor };
+                slide1.addText('Empowering Rural India', { x: 1, y: 2, w: 8, fontSize: 54, bold: true, color: titleColor, align: 'center' });
+                slide1.addText('A Unified Agri-Health Platform', { x: 1, y: 3, w: 8, fontSize: 28, color: accentAgri, align: 'center' });
+
+                // Slide 2: Section
+                addSectionSlide('The Core Problem', 'Understanding the disconnected realities of rural livelihoods and vulnerability.');
+
+                // Slide 3: The Dual Crisis
+                addContentSlide('The Dual Crisis', [
+                    { text: 'Agricultural Vulnerability: Farmers struggle with opaque market prices, expensive farming inputs, and lack of modern advisory.' },
+                    { text: 'Healthcare Deficit: Villagers face severe health crises due to absent doctors, counterfeit medicines, and high travel costs.' },
+                    { text: 'The Interconnected Cycle: A poor harvest leads to neglected health; sudden medical emergencies force predatory loans.' }
+                ]);
+
+                // Slide 4: Unified Value Proposition
+                addContentSlide('The Unified Value Proposition', [
+                    { text: 'Unified Access: One lightweight interface serving both farming and health needs.' },
+                    { text: 'Phygital Delivery: Bypasses digital literacy gaps using trained local village facilitators with hardware.' },
+                    { text: 'Economic Resilience: Removes exploitative intermediaries and prevents health-induced predatory debt.' }
+                ]);
+
+                // Slide 5: Section
+                addSectionSlide('System Architecture', 'How the dual-engine platform connects critical services to the last mile.');
+
+                // Slide 6: Dual Hub Engines
+                let slide6 = pptx.addSlide();
+                slide6.background = { color: bgColor };
+                slide6.addText('Dual Hub Engines', { x: 0.5, y: 0.5, w: 9, fontSize: 32, bold: true, color: titleColor });
+                slide6.addText([
+                    { text: 'Agri-Hub Engine', options: { bold: true, color: accentAgri, bullet: false, fontSize: 24 } },
+                    { text: 'Direct Market Access: Aggregate produce for institutional buyers.' },
+                    { text: 'Micro-Advisories: Hyper-local weather & pest guidance.' },
+                    { text: 'Input Aggregation: Group purchasing of certified seeds/fertilizers.' },
+                    { text: '', options: { bullet: false } },
+                    { text: 'Health-Hub Engine', options: { bold: true, color: accentHealth, bullet: false, fontSize: 24 } },
+                    { text: 'Assisted Telemedicine: Audio/video interface for vitals & doctors.' },
+                    { text: 'Medicine Linkage: Direct fulfillment for certified generic medicines.' },
+                    { text: 'Preventative Care: Automated SMS reminders for immunizations.' }
+                ], { x: 0.5, y: 1.3, w: 9, h: 5, fontSize: 16, color: textColor, bullet: true, valign: 'top', lineSpacing: 22 });
+
+                // Slide 7: Village Entrepreneur Model
+                addContentSlide('The Village Entrepreneur Model', [
+                    { text: 'Overcoming Digital Friction: Operates through an Assisted Kiosk Model empowering local youth/SHGs.' },
+                    { text: 'Operational Duties: These operators run basic diagnostics (BP cuffs, glucometers) and log agricultural data.' },
+                    { text: 'Sustainability: They earn a sustainable commission per transaction, creating local jobs and ensuring high trust.' }
+                ]);
+
+                // Slide 8: Section
+                addSectionSlide('Roadblocks & Realities', 'Systemic flaws where digital software collides with rural physical realities.');
+
+                // Slide 9: Major Flaws
+                addContentSlide('Systemic Roadblocks (Major Flaws)', [
+                    { text: 'The Credit Trap: Middlemen provide instant loans. The platform must integrate micro-credit to bypass them.' },
+                    { text: 'Medical Liability: High legal risk in remote diagnosis. Dispensing drugs requires licensed pharmacists.' },
+                    { text: 'Logistics Reality: Moving perishable goods requires complex, expensive temperature-controlled logistics.' }
+                ]);
+
+                // Slide 10: Minor Flaws
+                addContentSlide('Operational Friction (Minor Flaws)', [
+                    { text: 'Produce Standardization: Local operators lack training to assay crops accurately.' },
+                    { text: 'High Agent Churn: If volumes are low, commissions drop, and agents abandon the platform.' },
+                    { text: 'Infrastructure Blackouts: Frequent power cuts and 4G drops interrupt video telemedicine.' },
+                    { text: 'Data Privacy Vulnerabilities: Merging financial and health records creates localized risks.' }
+                ]);
+
+                // Slide 11: Quote
+                let slide11 = pptx.addSlide();
+                slide11.background = { color: bgColor };
+                slide11.addText('The Path Forward', { x: 0.5, y: 0.5, w: 9, fontSize: 32, bold: true, color: titleColor });
+                slide11.addText('"The platform cannot operate in a vacuum; it must plug into existing infrastructure rather than attempting to rebuild it from scratch."', 
+                    { x: 1, y: 2.2, w: 8, h: 2, fontSize: 26, italic: true, color: accentAgri, align: 'center' });
+
+                // Save the file
+                pptx.writeFile({ fileName: 'Unified_Rural_Platform.pptx' }).then(() => {
+                    btn.innerText = "Download Complete!";
+                    btn.style.background = "#10b981";
+                    status.innerText = "Check your downloads folder.";
+                    
+                    // Reset button after 3 seconds
+                    setTimeout(() => {
+                        btn.innerText = "Download .pptx File";
+                        btn.style.background = "";
+                        btn.disabled = false;
+                    }, 3000);
+                });
+
+            } catch (error) {
+                console.error(error);
+                status.innerText = "An error occurred during generation.";
+                status.style.color = "#ef4444";
+                btn.innerText = "Try Again";
+                btn.disabled = false;
+            }
+        }
+    </script>
+</body>
+</html>
